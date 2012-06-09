@@ -1,6 +1,15 @@
 module IRB
   module RSpecCommand
 
+    def self.load_rspec
+      return unless IRB.try_require 'interactive_rspec'
+      require '~/.irb/irb/interactive_rspec_mongoid'
+
+      if Gem.loaded_specs['rspec'].version < Gem::Version.new('2.9.10')
+        raise 'Please use RSpec 2.9.10 or later'
+      end
+    end
+
     def self.configure_rspec
       Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require(f) || load(f) }
       load Rails.root.join("spec", "spec_helper.rb")
@@ -9,8 +18,7 @@ module IRB
     end
 
     def self.rspec(specs)
-      return unless IRB.try_require 'interactive_rspec'
-      require '~/.irb/irb/interactive_rspec_mongoid'
+      self.load_rspec
 
       if specs
         InteractiveRspec.switch_rails_env do
