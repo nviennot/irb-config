@@ -21,6 +21,7 @@ What is it good for ?
 
 * Features automatically loaded into your rails console, `rails c` and you go straight to heaven.
 * Mongoid pretty traces. You can shut them off with `Mongoid.logger.level = Logger::WARN`.
+  Note that `Rails.logger == Mongoid.logger`.
 * RSpec support. Use `rspec spec` to launch a test, `rspec` to have an RSpec context.
 
 Notes
