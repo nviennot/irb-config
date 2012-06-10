@@ -11,7 +11,7 @@ module IRB
           def reconnect_active_record
             Mongoid.load!(Rails.root.join("config", "mongoid.yml"))
             reconnect_active_record_orig
-            reload! # reloading also finalize the database switch
+            reload!(false) # reloading also finalize the database switch
           end
         end
       end

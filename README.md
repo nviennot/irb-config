@@ -33,15 +33,15 @@ How to use
 * If Mongoid emits too much noise (For example you are running all your tests),
   you can make it quiet with `Mongoid.logger.level = Logger::WARN`.  Note that
   `Rails.logger == Mongoid.logger`.
-* Use `rspec spec_pattern` to launch a test, `rspec` alone to have an RSpec
-  context.
+* Use the `rspec` command pretty much like the usual one.
 * Type `help` to see the Pry help.
 
 Notes
 -----
 
 * All the gems from your global gemset can be loaded bypassing Bundler, so
-  don't put garbage in it.
+  don't put garbage in it. Use `gem list` while in your global gemset to make
+  sure everything looks ok.
 * The RSpec context run with your test environment, including your test
   database settings.  Furthermore, whenever you run the rspec command, all your
   classes are reloaded with `reload!`.
@@ -53,13 +53,15 @@ With the [Screen](https://github.com/ervandew/screen) plugin, you can
 communicate with screen/tmux to send some commands. I find these one
 particularly useful:
 
+    map <Leader>c :ScreenShellVertical bundle exec rails c<CR>
     map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
     map <Leader>f :w<CR> :call ScreenShellSend("Rails.logger.level = Logger::WARN\n".
                                              \ "rspec ".@%."\n".
                                              \ "Rails.logger.level = Logger::DEBUG")<CR>
 
-Assuming you have a tmux session with vim and the rails console,
-`,r` saves the file and run the rspec test corresponding to the cursor line.
-`,f` saves the file and run the rspec test on the entire rspec file.
+Assuming you have a tmux session with vim and the rails console:
+* `,c` opens a tmux pane with a rails console.
+* `,r` saves the file and run the rspec test corresponding to the cursor line.
+* `,f` saves the file and run the rspec test on the entire rspec file.
 
 This is setup in my [Vim configuration](https://github.com/nviennot/vim-config/).

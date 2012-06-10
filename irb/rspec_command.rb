@@ -23,40 +23,31 @@ module IRB
       FactoryGirl.reload if defined?(FactoryGirl)
     end
 
-    def self.rspec(specs)
-      self.load_rspec
-
-      if specs
-        InteractiveRspec.switch_rails_env do
-          IRB::RSpecCommand.configure_rspec
-          InteractiveRspec.run_specs specs
-        end
-      else
-        InteractiveRspec.switch_rspec_mode do
-          InteractiveRspec.switch_rails_env do
-            IRB::RSpecCommand.configure_rspec
-            pry InteractiveRspec.new_extended_example_group
-          end
-        end
+    def self.with_rspec_env
+      IRB::RSpecCommand.load_rspec
+      InteractiveRspec.switch_rails_env do
+        IRB::RSpecCommand.configure_rspec
+        yield
       end
-
       RSpec.reset
     end
 
     def self.setup
-      rspec = Pry::CommandSet.new do
-        create_command "rspec", "Launch rspec. Without arguments creates an rspec context (experimental)" do
+      rspec_cmd = Pry::CommandSet.new do
+        create_command "rspec", "Works pretty much like the regular rspec command" do
           group "RSpec"
           def process(specs)
-            IRB::RSpecCommand.rspec(specs)
-            nil
+            IRB::RSpecCommand.with_rspec_env do
+              InteractiveRspec.run_specs(specs.to_s)
+            end
           end
         end
       end
-      Pry::Commands.import rspec
+
+      Pry::Commands.import rspec_cmd
     end
 
   end
 end
 
-IRB::RSpecCommand.setup
+IRB::RSpecCommand.setup if defined?(Rails)
