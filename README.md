@@ -34,6 +34,7 @@ How to use
   you can make it quiet with `Mongoid.logger.level = Logger::WARN`.  Note that
   `Rails.logger == Mongoid.logger`.
 * Use the `rspec` command pretty much like the usual one.
+* Use the `env test` to switch to the test environment.
 * Type `help` to see the Pry help.
 
 Notes
