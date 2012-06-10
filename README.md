@@ -16,18 +16,32 @@ To update the repository, run
 
     make update
 
-What is it good for ?
----------------------
+What is it ?
+------------
 
-* Features automatically loaded into your rails console, `rails c` and you go straight to heaven.
-* Mongoid pretty traces. You can shut them off with `Mongoid.logger.level = Logger::WARN`.
-  Note that `Rails.logger == Mongoid.logger`.
-* RSpec support. Use `rspec spec` to launch a test, `rspec` to have an RSpec context.
+It packages
+[Pry](https://github.com/pry/pry),
+[Awesome Print](https://github.com/michaeldv/awesome_print),
+[Interactive RSpec](https://github.com/amatsuda/interactive_rspec),
+and a Mongoid logger colorizer.
+
+How to use
+----------
+
+* All the goodies are automatically loaded into your rails console, `rails c`
+  and you go straight to heaven.
+* If Mongoid emits too much noise (For example you are running all your tests),
+  you can make it quiet with `Mongoid.logger.level = Logger::WARN`.  Note that
+  `Rails.logger == Mongoid.logger`.
+* Use `rspec spec_pattern` to launch a test, `rspec` alone to have an RSpec
+  context.
+* Type `help` to see the Pry help.
 
 Notes
 -----
 
-* All the gems from your global gemset can be loaded bypassing Bundler, so don't
-  put garbage in it.
-* The RSpec context run with your test environment, including using the test
-  database. It also reloads all your classes
+* All the gems from your global gemset can be loaded bypassing Bundler, so
+  don't put garbage in it.
+* The RSpec context run with your test environment, including your test
+  database settings.  Furthermore, whenever you run the rspec command, all your
+  classes are reloaded with `reload!`.
