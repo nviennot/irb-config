@@ -45,3 +45,21 @@ Notes
 * The RSpec context run with your test environment, including your test
   database settings.  Furthermore, whenever you run the rspec command, all your
   classes are reloaded with `reload!`.
+
+Vim Integration
+----------------
+
+With the [Screen](https://github.com/ervandew/screen) plugin, you can
+communicate with screen/tmux to send some commands. I find these one
+particularly useful:
+
+    map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
+    map <Leader>f :w<CR> :call ScreenShellSend("Rails.logger.level = Logger::WARN\n".
+                                             \ "rspec ".@%."\n".
+                                             \ "Rails.logger.level = Logger::DEBUG")<CR>
+
+Assuming you have a tmux session with vim and the rails console,
+`,r` saves the file and run the rspec test corresponding to the cursor line.
+`,f` saves the file and run the rspec test on the entire rspec file.
+
+This is setup in my [Vim configuration](https://github.com/nviennot/vim-config/).
