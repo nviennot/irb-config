@@ -17,10 +17,27 @@ module IRB
       @config_cache ||= RSpecConfigCache.new
     end
 
+    def self.mute_logger_before_test
+      RSpec.configure do |config|
+        config.before do
+          @logger_level = Rails.logger.level
+          Rails.logger.level = Logger::WARN
+        end
+      end
+      yield
+      RSpec.configure do |config|
+        config.before do
+          Rails.logger.level = @logger_level
+        end
+      end
+    end
+
     def self.configure_rspec
       self.config_cache.cache do
-        require Rails.root.join("spec", "spec_helper.rb")
-        InteractiveRspec.configure
+        self.mute_logger_before_test do
+          require Rails.root.join("spec", "spec_helper.rb")
+          InteractiveRspec.configure
+        end
       end
       FactoryGirl.reload if defined?(FactoryGirl)
     end
