@@ -10,11 +10,17 @@ module IRB
       end
     end
 
+    def self.config_cache
+      require '~/.irb/irb/rspec_config_cache'
+      @config_cache ||= RSpecConfigCache.new
+    end
+
     def self.configure_rspec
-      Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require(f) || load(f) }
-      load Rails.root.join("spec", "spec_helper.rb")
+      self.config_cache.cache do
+        require Rails.root.join("spec", "spec_helper.rb")
+        InteractiveRspec.configure
+      end
       FactoryGirl.reload if defined?(FactoryGirl)
-      InteractiveRspec.configure
     end
 
     def self.rspec(specs)
