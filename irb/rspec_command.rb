@@ -43,13 +43,11 @@ module IRB
     end
 
     def self.with_test_env(&block)
-      return block.call if @test_env
+      return block.call if Rails.env.test?
 
       begin
-        @test_env = true
         InteractiveRspec.switch_rails_env(&block)
       ensure
-        @test_env = false
         reload!(false) if defined?(Mongoid) # also finalizes the mongodb database switch
       end
     end
@@ -63,8 +61,57 @@ module IRB
       end
     end
 
+    def self.cucumber_config(args)
+      @cucumber_config = Cucumber::Cli::Configuration.new
+      @cucumber_config.parse!(args)
+      Cucumber.logger = @cucumber_config.log
+      @cucumber_config
+    end
+
+    def self.with_cucumber_env(args)
+      self.with_rspec_env do
+        require 'cucumber'
+        require 'cucumber/rspec/disable_option_parser'
+        require 'optparse'
+        require 'cucumber'
+        require 'logger'
+        require 'cucumber/parser'
+        require 'cucumber/feature_file'
+        require 'cucumber/cli/configuration'
+
+        existing_runtime = @cuc_runtime
+        runtime = if existing_runtime
+          existing_runtime.configure(self.cucumber_config(args))
+          existing_runtime
+        else
+          @cuc_runtime = Cucumber::Runtime.new(self.cucumber_config(args))
+        end
+        runtime.instance_eval do
+          @loader = nil
+          @results = Cucumber::Runtime::Results.new(@configuration)
+          @support_code.instance_eval do
+            @programming_languages.map do |programming_language|
+              programming_language.step_definitions.clear
+            end
+          end
+        end
+
+        runtime.run!
+        runtime.write_stepdefs_json
+        runtime.results.failure?
+      end
+    end
+
     def self.setup
       rspec_cmd = Pry::CommandSet.new do
+        create_command "cucumber", "Works pretty much like the regular cucumber command" do
+          group "Testing"
+          def process(*args)
+            IRB::RSpecCommand.with_cucumber_env(args) do
+              TopLevel.new.pry
+            end
+          end
+        end
         create_command "rspec", "Works pretty much like the regular rspec command" do
           group "Testing"
           def process(specs)
