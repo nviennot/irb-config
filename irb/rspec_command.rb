@@ -49,6 +49,7 @@ module IRB
         InteractiveRspec.switch_rails_env(&block)
       ensure
         reload!(false) if defined?(Mongoid) # also finalizes the mongodb database switch
+        CopycopyterClient::Rails.initialize if defined? CopycopyterClient::Rails
       end
     end
 
@@ -81,7 +82,12 @@ module IRB
 
         existing_runtime = @cuc_runtime
         runtime = if existing_runtime
-          existing_runtime.configure(self.cucumber_config(args))
+          config = self.cucumber_config(args)
+          def config.support_to_load
+            load 'factory_girl/step_definitions.rb' if defined?(FactoryGirl)
+            []
+          end
+          existing_runtime.configure(config)
           existing_runtime
         else
           @cuc_runtime = Cucumber::Runtime.new(self.cucumber_config(args))

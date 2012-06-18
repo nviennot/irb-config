@@ -7,6 +7,16 @@ module IRB
           @app.call(env)
         end
       end
+
+      if defined?(RailsDevTweaks::GranularAutoload::Middleware)
+        RailsDevTweaks::GranularAutoload::Middleware.class_eval do
+          def call(env)
+            @app.call(env)
+          end
+        end
+      end
+
+
     end
 
   end
