@@ -15,6 +15,7 @@ module IRB
     def to_s
       defined?(Rails) ? Rails.env : "main"
     end
+    Object.__send__(:include, Rails::ConsoleMethods) if defined?(Rails::ConsoleMethods)
   end
 end
 
