@@ -8,7 +8,7 @@ To install, run
     make install
 
     rvm use XXX@global # Replace XXX with your ruby interpreter
-    gem install pry pry-doc coderay awesome_print
+    gem install pry pry-doc coderay awesome_print gnuplot
     gem install --ignore-dependencies interactive_rspec # prevent the installation of the rspec gem
     rvm use XXX
 
@@ -22,8 +22,8 @@ What is it ?
 It packages
 [Pry](https://github.com/pry/pry),
 [Awesome Print](https://github.com/michaeldv/awesome_print),
-[Interactive RSpec](https://github.com/amatsuda/interactive_rspec),
-and a Mongoid logger colorizer.
+[Gnuplot](https://github.com/rdp/ruby_gnuplot),
+Rspec/Cucumber support and a Mongoid logger colorizer.
 
 How to use
 ----------
@@ -34,7 +34,9 @@ How to use
   you can make it quiet with `Mongoid.logger.level = Logger::WARN`.  Note that
   `Rails.logger == Mongoid.logger`.
 * Use the `rspec` command pretty much like the usual one.
-* Use the `env test` to switch to the test environment.
+* Use the `cucumber` command pretty much like the usual one.
+* Use the `env test` command to switch to the test environment.
+* Use the `plot` command to plot an array of 2D points (accepts a Hash too).
 * Type `help` to see the Pry help.
 
 Notes
