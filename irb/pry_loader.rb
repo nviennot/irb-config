@@ -3,11 +3,16 @@ module IRB
     def self.setup
       return unless IRB.try_require 'pry'
 
-      ::Pry.prompt = [proc { |obj, nest_level| "(#{obj}) > " },
-                      proc { |obj, nest_level| "(#{obj}) * " }]
+      ::Pry.prompt = [proc { |obj, nest_level| "#{self.pwd} (#{obj}) > " },
+                      proc { |obj, nest_level| "#{self.pwd} (#{obj}) * " }]
+      @@home = Dir.home
 
       TopLevel.new.pry
       exit
+    end
+
+    def self.pwd
+      Dir.pwd.gsub(/^#{@@home}/, '~')
     end
   end
 
