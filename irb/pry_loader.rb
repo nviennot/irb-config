@@ -1,10 +1,10 @@
 module IRB
-  module PryLoader
+  module Pry
     def self.setup
       return unless IRB.try_require 'pry'
 
-      Pry.prompt = [proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} > " },
-                    proc { |obj, nest_level| "#{RUBY_VERSION} (#{obj}):#{nest_level} * " }]
+      ::Pry.prompt = [proc { |obj, nest_level| "(#{obj}) > " },
+                      proc { |obj, nest_level| "(#{obj}) * " }]
 
       TopLevel.new.pry
       exit
@@ -19,4 +19,4 @@ module IRB
   end
 end
 
-IRB::PryLoader.setup
+IRB::Pry.setup

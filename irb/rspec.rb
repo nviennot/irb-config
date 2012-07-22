@@ -1,5 +1,5 @@
 module IRB
-  module RSpecCommand
+  module RSpec
 
     def self.reload_rspec
       return unless IRB.try_require 'interactive_rspec'
@@ -9,7 +9,7 @@ module IRB
         raise 'Please use RSpec 2.9.10 or later'
       end
 
-      RSpec.reset
+      ::RSpec.reset
     end
 
     def self.config_cache
@@ -18,14 +18,14 @@ module IRB
     end
 
     def self.mute_logger_before_test
-      RSpec.configure do |config|
+      ::RSpec.configure do |config|
         config.before do
           @logger_level = Rails.logger.level
           Rails.logger.level = Logger::WARN
         end
       end
       yield
-      RSpec.configure do |config|
+      ::RSpec.configure do |config|
         config.before do
           Rails.logger.level = @logger_level
         end
@@ -109,11 +109,11 @@ module IRB
     end
 
     def self.setup
-      rspec_cmd = Pry::CommandSet.new do
+      ::Pry::CommandSet.new do
         create_command "cucumber", "Works pretty much like the regular cucumber command" do
           group "Testing"
           def process(*args)
-            IRB::RSpecCommand.with_cucumber_env(args) do
+            IRB::RSpec.with_cucumber_env(args) do
               TopLevel.new.pry
             end
           end
@@ -121,7 +121,7 @@ module IRB
         create_command "rspec", "Works pretty much like the regular rspec command" do
           group "Testing"
           def process(specs)
-            IRB::RSpecCommand.with_rspec_env do
+            IRB::RSpec.with_rspec_env do
               InteractiveRspec.run_specs(specs.to_s)
             end
           end
@@ -131,17 +131,15 @@ module IRB
           group "Testing"
           def process(env)
             raise "Use only with argument 'test'" if env != 'test'
-            IRB::RSpecCommand.with_rspec_env do
+            IRB::RSpec.with_rspec_env do
               TopLevel.new.pry
             end
           end
         end
-      end
-
-      Pry::Commands.import rspec_cmd
+      end.tap { |cmd| ::Pry::Commands.import cmd }
     end
 
   end
 end
 
-IRB::RSpecCommand.setup if defined?(Rails)
+IRB::RSpec.setup if defined?(Rails)

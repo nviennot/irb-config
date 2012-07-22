@@ -1,5 +1,5 @@
 module IRB
-  module PlotCommand
+  module Plot
     class << self; attr_accessor :fork; end
     def self.plot(array)
       array = array.to_a if array.is_a?(Hash)
@@ -26,7 +26,7 @@ module IRB
             rescue
             end
             _open = proc { open_no_fork(persist, &block) }
-            IRB::PlotCommand.fork ? fork { _open.call } : _open.call
+            IRB::Plot.fork ? fork { _open.call } : _open.call
           end
         end
       end
@@ -34,8 +34,8 @@ module IRB
 
     def self.setup
       return unless IRB.try_require 'gnuplot'
-      IRB::PlotCommand.setup_fork
-      Pry::CommandSet.new do
+      IRB::Plot.setup_fork
+      ::Pry::CommandSet.new do
         create_command "plot", "gnuplot an array of 2D points" do
           group "Math"
 
@@ -46,13 +46,13 @@ module IRB
           def process
             cmd = eval(args.join(' '))
             cmd = eval(cmd) if cmd.is_a?(String)
-            IRB::PlotCommand.fork = !opts.present?(:'no-fork')
-            IRB::PlotCommand.plot(cmd)
+            IRB::Plot.fork = !opts.present?(:'no-fork')
+            IRB::Plot.plot(cmd)
           end
         end
-      end.tap { |cmd| Pry::Commands.import cmd }
+      end.tap { |cmd| ::Pry::Commands.import cmd }
     end
   end
 end
 
-IRB::PlotCommand.setup
+IRB::Plot.setup
