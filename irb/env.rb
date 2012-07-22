@@ -47,6 +47,7 @@ module IRB
     load '~/.irb/irb/env/active_record.rb'
     load '~/.irb/irb/env/mongoid.rb'
     load '~/.irb/irb/env/copycopter_client.rb'
+    load '~/.irb/irb/env/rails.rb'
     load '~/.irb/irb/env/reloader.rb'
 
     IRB::Env.add_handler(self)
