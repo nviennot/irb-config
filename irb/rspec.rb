@@ -2,9 +2,6 @@ module IRB
   module RSpec
 
     def self.reload_rspec
-      return unless IRB.try_require 'interactive_rspec'
-      require '~/.irb/irb/interactive_rspec_mongoid'
-
       if Gem.loaded_specs['rspec'].version < Gem::Version.new('2.9.10')
         raise 'Please use RSpec 2.9.10 or later'
       end
@@ -42,20 +39,9 @@ module IRB
       FactoryGirl.reload if defined?(FactoryGirl)
     end
 
-    def self.with_test_env(&block)
-      return block.call if Rails.env.test?
-
-      begin
-        InteractiveRspec.switch_rails_env(&block)
-      ensure
-        reload!(false) if defined?(Mongoid) # also finalizes the mongodb database switch
-        CopycopyterClient::Rails.initialize if defined? CopycopyterClient::Rails
-      end
-    end
-
     def self.with_rspec_env
       self.reload_rspec
-      self.with_test_env do
+      RailsEnv.with_test_env do
         reload!(false)
         self.configure_rspec
         yield
@@ -123,16 +109,6 @@ module IRB
           def process(specs)
             IRB::RSpec.with_rspec_env do
               InteractiveRspec.run_specs(specs.to_s)
-            end
-          end
-        end
-
-        create_command "env", "Switch environment (only test for now). ctrl+d to leave" do
-          group "Testing"
-          def process(env)
-            raise "Use only with argument 'test'" if env != 'test'
-            IRB::RSpec.with_rspec_env do
-              TopLevel.new.pry
             end
           end
         end
