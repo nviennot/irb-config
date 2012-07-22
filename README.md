@@ -9,7 +9,6 @@ To install, run
 
     rvm use XXX@global # Replace XXX with your ruby interpreter
     gem install pry pry-doc coderay awesome_print gnuplot
-    gem install --ignore-dependencies interactive_rspec # prevent the installation of the rspec gem
     rvm use XXX
 
 To update the repository, run

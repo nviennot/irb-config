@@ -1,6 +1,5 @@
 module IRB
   module BypassReloader
-
     def self.setup
       ActionDispatch::Reloader.class_eval do
         def call(env)
@@ -15,10 +14,7 @@ module IRB
           end
         end
       end
-
-
     end
-
   end
 end
 
