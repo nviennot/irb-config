@@ -11,14 +11,13 @@ define check_file
 	fi
 endef
 
-all:
-	@echo type make install.
+install: $(TARGETS)
+	@[[ "${RUBY}" != "" ]] || (echo "use 'make install RUBY=1.9.3-p125' (use the ruby of your choice)"; false)
+	rvm ${RUBY}@global do gem install pry pry-doc coderay awesome_print gnuplot
 
 $(HOME)/.%: %
 	$(call check_file,$@)
 	ln -fs $(PWD)/$< $@
-
-install: $(TARGETS)
 
 update:
 	git pull

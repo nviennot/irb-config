@@ -5,11 +5,11 @@ To install, run
 
     git clone git://github.com/nviennot/irb-config.git ~/.irb
     cd ~/.irb
-    make install
+    make install RUBY=1.9.3-p125
 
-    rvm use XXX@global # Replace XXX with your ruby interpreter
-    gem install pry pry-doc coderay awesome_print gnuplot
-    rvm use XXX
+Replace 1.9.3-p125 with the ruby of your choice. rvm will be invoked during the
+installation to install the following gems in the global gemset: pry pry-doc
+coderay awesome\_print gnuplot
 
 To update the repository, run
 
