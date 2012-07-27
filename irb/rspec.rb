@@ -14,9 +14,11 @@ module IRB
 
       self.config_cache.cache do
         ::RSpec.configure do |config|
-          config.before do
-            @logger_level = ::Rails.logger.level
-            ::Rails.logger.level = Logger::WARN
+          if defined?(Mongoid)
+            config.before do
+              @logger_level = ::Mongoid.logger.level
+              ::Mongoid.logger.level = Logger::WARN
+            end
           end
           config.output_stream = STDOUT
           config.color_enabled = true
@@ -25,8 +27,10 @@ module IRB
         require "./spec/spec_helper"
 
         ::RSpec.configure do |config|
-          config.before do
-            ::Rails.logger.level = @logger_level
+          if defined?(Mongoid)
+            config.before do
+              ::Mongoid.logger.level = @logger_level
+            end
           end
         end
       end
