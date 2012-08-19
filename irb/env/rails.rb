@@ -1,9 +1,13 @@
 module IRB::Env::Rails
   def self.switch_env(old_env, env)
     if ::Rails.env != env
-      load "./config/environments/#{env}.rb"
       ENV['RAILS_ENV'] = env
       ::Rails.env = env
+
+      Dir[Rails.root.join('config', 'initializers', '*.rb')].map do |file|
+        load file
+      end
+      load "./config/environments/#{env}.rb"
     end
   end
 
