@@ -14,6 +14,7 @@ module IRB
     end
 
     def self.load_pry_plugins
+      IRB.try_require 'pry-doc'
       IRB.try_require 'pry-git'
       IRB.try_require 'pry-rails'
       IRB.try_require 'pry-debugger'
