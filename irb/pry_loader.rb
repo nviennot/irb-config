@@ -14,9 +14,12 @@ module IRB
     end
 
     def self.load_pry_plugins
+      IRB.try_require 'pry-git'
       IRB.try_require 'pry-rails'
-      IRB.try_require 'pry-nav'
+      IRB.try_require 'pry-debugger'
+      IRB.try_require 'pry-remote'
       IRB.try_require 'pry-stack_explorer'
+      IRB.try_require 'pry-coolline'
     end
 
     def self.pwd

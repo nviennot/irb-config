@@ -1,4 +1,4 @@
-GEMS = pry pry-doc pry-rails pry-nav pry-stack_explorer coderay awesome_print gnuplot
+GEMS = pry pry-doc pry-git pry-rails pry-debugger pry-remote pry-stack_explorer pry-coolline awesome_print gnuplot coderay
 TARGETS = $(HOME)/.pryrc $(HOME)/.irbrc
 RVM_GLOBAL = ~/.rvm/gemsets/global.gems
 SHELL = /bin/bash
@@ -17,8 +17,10 @@ endef
 bold=`tput bold`
 normal=`tput sgr0`
 
+all:
+	@echo type make install
+
 install: $(TARGETS)
-	@echo ${RUBIES}
 	@echo -e "gems: ${bold}${GEMS}${normal}\n"
 	@for RUBY in ${RUBIES}; do echo Installing gems in ${bold}$$RUBY@global${normal}...; rvm $$RUBY@global do gem install ${GEMS}; echo; done
 	@echo "${bold}Setting up rvm to install these gems by default when installing a new ruby...${normal}"

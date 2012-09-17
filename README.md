@@ -7,11 +7,8 @@ To install, run
     cd ~/.irb
     make install
 
-The following gems will be installed for all your installed rubies:
-
-    pry pry-doc pry-rails pry-nav pry-stack_explorer coderay awesome_print gnuplot
-
-Furthermore, when you install a new ruby, these gems will be automatically installed.
+It installs all the required gems for all your installed rubies.
+Furthermore, these gems will be automatically installed when you install a new ruby.
 
 To update the repository, run
 
@@ -20,15 +17,30 @@ To update the repository, run
 What is it ?
 ------------
 
-It packages
-[Pry](https://github.com/pry/pry) and some plugins (
-[pry-rails](https://github.com/rweng/pry-rails),
-[pry-nav](https://github.com/nixme/pry-nav),
-[pry-stack-explorer](https://github.com/pry/pry-stack_explorer)
-[Awesome Print](https://github.com/michaeldv/awesome_print),
-[Gnuplot](https://github.com/rdp/ruby_gnuplot).
+It packages:
+- [Pry](https://github.com/pry/pry)
+- [Pry Doc](https://github.com/pry/pry-doc)
+- [Pry Git](https://github.com/pry/pry-git)
+- [Pry Rails](https://github.com/rweng/pry-rails)
+- [Pry Debugger](https://github.com/nixme/pry-debugger)
+- [Pry Remote](https://github.com/Mon-Ouie/pry-remote)
+- [Pry Stack Explorer](https://github.com/pry/pry-stack_explorer)
+- [Pry Coolline](https://github.com/pry/pry-coolline)
+- [Awesome Print](https://github.com/michaeldv/awesome_print)
+- Pry commands for [Gnuplot](https://github.com/rdp/ruby_gnuplot)
+- Pry commands for [Rspec](https://github.com/rspec/rspec)/[Cucumber](https://github.com/cucumber/cucumber)
+  to run tests directly in the rails console
+- [Mongoid](https://github.com/mongoid/mongoid) pretty printing with [Coderay](https://github.com/rubychan/coderay)
 
-It also provides support for Mongoid, Rails, CopycopterClient, Rspec/Cucumber.
+It supports Rails envionment switches for:
+- Active Record
+- Mongoid
+- CopycopterClient
+- Rspec
+- Cucumber
+
+This way you can switch back and forth from the development environment and the
+test environment, which is what the rspec/cucumber commands do.
 
 How to use
 ----------
