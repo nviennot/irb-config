@@ -13,7 +13,7 @@ endef
 
 install: $(TARGETS)
 	@[[ "${RUBY}" != "" ]] || (echo "use 'make install RUBY=1.9.3-p125' (use the ruby of your choice)"; false)
-	rvm ${RUBY}@global do gem install pry pry-doc coderay awesome_print gnuplot
+	rvm ${RUBY}@global do gem install pry pry-doc pry-rails pry-nav pry-stack_explorer coderay awesome_print gnuplot
 
 $(HOME)/.%: %
 	$(call check_file,$@)

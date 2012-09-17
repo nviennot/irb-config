@@ -3,12 +3,20 @@ module IRB
     def self.setup
       return unless IRB.try_require 'pry'
 
+      load_pry_plugins
+
       ::Pry.prompt = [proc { |obj, nest_level| "#{self.pwd} (#{obj}) > " },
                       proc { |obj, nest_level| "#{self.pwd} (#{obj}) * " }]
       @@home = Dir.home
 
       TopLevel.new.pry
       exit
+    end
+
+    def self.load_pry_plugins
+      IRB.try_require 'pry-rails'
+      IRB.try_require 'pry-nav'
+      IRB.try_require 'pry-stack_explorer'
     end
 
     def self.pwd
