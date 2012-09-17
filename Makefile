@@ -1,4 +1,6 @@
+GEMS = pry pry-doc pry-rails pry-nav pry-stack_explorer coderay awesome_print gnuplot
 TARGETS = $(HOME)/.pryrc $(HOME)/.irbrc
+RVM_GLOBAL = ~/.rvm/gemsets/global.gems
 SHELL = /bin/bash
 CWD = $(shell pwd)
 
@@ -11,9 +13,15 @@ define check_file
 	fi
 endef
 
+bold=`tput bold`
+normal=`tput sgr0`
+
 install: $(TARGETS)
-	@[[ "${RUBY}" != "" ]] || (echo "use 'make install RUBY=1.9.3-p125' (use the ruby of your choice)"; false)
-	rvm ${RUBY}@global do gem install pry pry-doc pry-rails pry-nav pry-stack_explorer coderay awesome_print gnuplot
+	@echo -e "gems: ${bold}${GEMS}${normal}\n"
+	@rvm all do sh -c 'echo -e Installing gems for ${bold}$$RUBY_VERSION${normal}...; gem install ${GEMS}; echo'
+	@echo "${bold}Setting up rvm to install these gems by default when installing a new ruby...${normal}"
+	@echo $(GEMS) | xargs -L1 -d ' ' | cat $(RVM_GLOBAL) - | sort -u | grep . > $(RVM_GLOBAL).new && mv $(RVM_GLOBAL){.new,}
+	@echo "${bold}Enjoy !${normal}"
 
 $(HOME)/.%: %
 	$(call check_file,$@)

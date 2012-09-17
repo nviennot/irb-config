@@ -5,11 +5,13 @@ To install, run
 
     git clone git://github.com/nviennot/irb-config.git ~/.irb
     cd ~/.irb
-    make install RUBY=1.9.3-p125
+    make install
 
-Replace 1.9.3-p125 with the ruby of your choice. rvm will be invoked during the
-installation to install the following gems in the global gemset: pry pry-doc
-coderay awesome\_print gnuplot
+The following gems will be installed for all your installed rubies:
+
+    pry pry-doc pry-rails pry-nav pry-stack\_explorer coderay awesome\_print gnuplot
+
+Furthermore, when you install a new ruby, these gems will be automatically installed.
 
 To update the repository, run
 
@@ -41,10 +43,8 @@ How to use
 Notes
 -----
 
-* All the gems from your global gemset can be loaded bypassing Bundler, so
-  don't put garbage in it. Use `gem list` while in your global gemset to make
-  sure everything looks ok.
-* The RSpec context run with your test environment, including your test
+* All the gems from your global gemset can be loaded bypassing Bundler.
+* The RSpec/Cucumber context run with your test environment, including your test
   database settings.  Furthermore, whenever you run the rspec command, all your
   classes are reloaded with `reload!`.
 
