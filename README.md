@@ -7,10 +7,14 @@ To install, run
     cd ~/.irb
     make install
 
-It installs all the required gems for all your installed rubies.
-Furthermore, these gems will be automatically installed when you install a new ruby.
+`make install` installs all the required gems for all your installed rubies.
+Furthermore, these gems will be automatically installed when you install a new
+ruby.
 
-To update the repository, run
+Updates
+--------
+
+To update the repository and all the gems, run
 
     make update
 

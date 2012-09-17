@@ -33,5 +33,6 @@ $(HOME)/.%: %
 
 update:
 	git pull
+	+make install
 
 .PHONY: install update
