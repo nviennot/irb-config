@@ -26,7 +26,9 @@ It packages:
 - [Pry Doc](https://github.com/pry/pry-doc)
 - [Pry Git](https://github.com/pry/pry-git)
 - [Pry Rails](https://github.com/rweng/pry-rails)
-- [Pry Debugger](https://github.com/nixme/pry-debugger)
+- [Pry Debugger](https://github.com/nixme/pry-debugger). Known bugs:
+  - The break format `file:line` does not work here for some reason. Posted a [pull request](https://github.com/nixme/pry-debugger/pull/18)
+  - The console won't close once a break point has been used.
 - [Pry Remote](https://github.com/Mon-Ouie/pry-remote)
 - [Pry Stack Explorer](https://github.com/pry/pry-stack_explorer)
 - [Pry Coolline](https://github.com/pry/pry-coolline)
@@ -45,6 +47,9 @@ It supports Rails envionment switches for:
 
 This way you can switch back and forth from the development environment and the
 test environment, which is what the rspec/cucumber commands do.
+
+About the debugger
+-----------------
 
 How to use
 ----------
@@ -78,14 +83,14 @@ particularly useful:
     command -nargs=? -complete=shellcmd W  :w | :call ScreenShellSend("load '".@%."';")
     map <Leader>c :ScreenShellVertical bundle exec rails c<CR>
     map <Leader>r :w<CR> :call ScreenShellSend("rspec ".@% . ':' . line('.'))<CR>
-    map <Leader>f :w<CR> :call ScreenShellSend("Rails.logger.level = Logger::WARN;\n".
-                                             \ "rspec ".@%."\n".
-                                             \ "Rails.logger.level = Logger::DEBUG;")<CR>
+    map <Leader>e :w<CR> :call ScreenShellSend("cucumber --format=pretty ".@% . ':' . line('.'))<CR>
+    map <Leader>b :w<CR> :call ScreenShellSend("break ".@% . ':' . line('.'))<CR>
+
+This is setup in my [Vim configuration](https://github.com/nviennot/vim-config/).
 
 Assuming you have a tmux session with vim and the rails console:
 * `:W` saves and reloads the current file in the console.
 * `,c` opens a tmux pane with a rails console.
 * `,r` saves the file and run the rspec test corresponding to the cursor line.
-* `,f` saves the file and run the rspec test on the entire rspec file.
-
-This is setup in my [Vim configuration](https://github.com/nviennot/vim-config/).
+* `,e` saves the file and run the cucumber test corresponding to the cursor line.
+* `,b` puts a break point on the current line
