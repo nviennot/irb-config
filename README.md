@@ -26,9 +26,7 @@ It packages:
 - [Pry Doc](https://github.com/pry/pry-doc)
 - [Pry Git](https://github.com/pry/pry-git)
 - [Pry Rails](https://github.com/rweng/pry-rails)
-- [Pry Debugger](https://github.com/nixme/pry-debugger). Known bugs:
-  - The break format `file:line` does not work here for some reason. Posted a [pull request](https://github.com/nixme/pry-debugger/pull/18)
-  - The console won't close once a break point has been used.
+- [Pry Debugger](https://github.com/nixme/pry-debugger)
 - [Pry Remote](https://github.com/Mon-Ouie/pry-remote)
 - [Pry Stack Explorer](https://github.com/pry/pry-stack_explorer)
 - [Pry Coolline](https://github.com/pry/pry-coolline)
@@ -47,9 +45,6 @@ It supports Rails envionment switches for:
 
 This way you can switch back and forth from the development environment and the
 test environment, which is what the rspec/cucumber commands do.
-
-About the debugger
------------------
 
 How to use
 ----------
@@ -72,6 +67,10 @@ Notes
 * The RSpec/Cucumber context run with your test environment, including your test
   database settings.  Furthermore, whenever you run the rspec command, all your
   classes are reloaded with `reload!`.
+* The pry debugger can misbehave: The break format `file:line` does not work
+  here for some reason.  Posted a [pull request](https://github.com/nixme/pry-debugger/pull/18).
+  Also the rails console won't close once a break point has been used, to be
+  fixed.
 
 Vim Integration
 ----------------
