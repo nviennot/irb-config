@@ -21,6 +21,7 @@ module IRB
       if @runtime
         def config.support_to_load
           load 'factory_girl/step_definitions.rb' if defined?(FactoryGirl)
+        ensure
           []
         end
         @runtime.configure(config)
