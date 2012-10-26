@@ -1,4 +1,4 @@
-GEMS = pry pry-doc pry-git pry-rails pry-debugger pry-remote pry-stack_explorer pry-coolline awesome_print gnuplot coderay
+GEMS = pry pry-doc pry-rails pry-debugger pry-stack_explorer awesome_print gnuplot coderay
 TARGETS = $(HOME)/.pryrc $(HOME)/.irbrc
 RVM_GLOBAL = ~/.rvm/gemsets/global.gems
 SHELL = /bin/bash

@@ -24,12 +24,9 @@ What is it ?
 It packages:
 - [Pry](https://github.com/pry/pry)
 - [Pry Doc](https://github.com/pry/pry-doc)
-- [Pry Git](https://github.com/pry/pry-git)
 - [Pry Rails](https://github.com/rweng/pry-rails)
 - [Pry Debugger](https://github.com/nixme/pry-debugger)
-- [Pry Remote](https://github.com/Mon-Ouie/pry-remote)
 - [Pry Stack Explorer](https://github.com/pry/pry-stack_explorer)
-- [Pry Coolline](https://github.com/pry/pry-coolline)
 - [Awesome Print](https://github.com/michaeldv/awesome_print)
 - Pry commands for [Gnuplot](https://github.com/rdp/ruby_gnuplot)
 - Pry commands for [Rspec](https://github.com/rspec/rspec)/[Cucumber](https://github.com/cucumber/cucumber)
