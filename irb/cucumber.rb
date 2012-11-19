@@ -20,8 +20,10 @@ module IRB
 
       if @runtime
         def config.support_to_load
-          load 'factory_girl/step_definitions.rb' if defined?(FactoryGirl)
-        ensure
+          begin
+            load 'factory_girl/step_definitions.rb' if defined?(FactoryGirl)
+          rescue LoadError
+          end
           []
         end
         @runtime.configure(config)
