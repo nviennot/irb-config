@@ -4,10 +4,12 @@ module IRB::Env::Rails
       ENV['RAILS_ENV'] = env
       ::Rails.env = env
 
-      Dir[Rails.root.join('config', 'initializers', '*.rb')].map do |file|
-        load file
+      Kernel.silence_warnings do
+        Dir[Rails.root.join('config', 'initializers', '*.rb')].map do |file|
+          load file
+        end
+        load "./config/environments/#{env}.rb"
       end
-      load "./config/environments/#{env}.rb"
     end
   end
 
