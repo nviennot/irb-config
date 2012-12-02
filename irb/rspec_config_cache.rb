@@ -62,6 +62,12 @@ module IRB
       @target = target
     end
 
+    [:include, :extend].each do |method|
+      define_method(method) do |*args|
+        method_missing(method, *args)
+      end
+    end
+
     def method_missing(method, *args, &block)
       @output << {:method => method, :args => args, :block => block}
       @target.send(method, *args, &block)
