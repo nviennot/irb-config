@@ -3,7 +3,7 @@ TARGETS = $(HOME)/.pryrc $(HOME)/.irbrc
 RVM_GLOBAL = ~/.rvm/gemsets/global.gems
 SHELL = /bin/bash
 CWD = $(shell pwd)
-RUBIES=$(shell ls ~/.rvm/rubies -1 | grep -v '^default$$')
+RUBIES=$(shell ls ~/.rvm/rubies | grep -v '^default$$')
 
 define check_file
 	@if [[ -e $1 && "$(OVERWRITE)" != "1" ]]; then \
