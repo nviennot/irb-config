@@ -1,3 +1,4 @@
+load '~/.irb/irbrc'
 require '~/.irb/irb/awesome_print_loader'
 require '~/.irb/irb/bypass_reloader'
 require '~/.irb/irb/env'
