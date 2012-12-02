@@ -4,6 +4,7 @@ module IRB
 
     # Mongoid pretty prints its command, colorized with coderay
     def self.setup
+      return unless defined?(Mongoid.logger)
       Mongoid.logger = Rails.logger if defined?(Rails)
 
       return unless IRB.try_require 'coderay'
