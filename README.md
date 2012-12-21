@@ -21,6 +21,10 @@ To update the repository and all the gems, run
 What is it ?
 ------------
 
+### Watch the screencast
+
+[![Watch the screencast!](https://s3.amazonaws.com/velvetpulse/screencasts/irb-config-screencast.jpg)](http://velvetpulse.com/2012/11/19/improve-your-ruby-workflow-by-integrating-vim-tmux-pry/)
+
 It packages:
 - [Pry](https://github.com/pry/pry)
 - [Pry Doc](https://github.com/pry/pry-doc)
