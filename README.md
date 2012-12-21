@@ -32,8 +32,9 @@ It packages:
 - [Pry Stack Explorer](https://github.com/pry/pry-stack_explorer)
 - [Awesome Print](https://github.com/michaeldv/awesome_print)
 - [Commands](https://github.com/rails/commands)
+- [Rails Env Switcher](https://github.com/nviennot/rails-env-switcher)
+- [RSpec Console](https://github.com/nviennot/rspec-console)
 - Pry commands for [Gnuplot](https://github.com/rdp/ruby_gnuplot)
-- Pry commands for [Rspec](https://github.com/rspec/rspec)/[Cucumber](https://github.com/cucumber/cucumber)
   to run tests directly in the rails console
 - [Mongoid](https://github.com/mongoid/mongoid) pretty printing with [Coderay](https://github.com/rubychan/coderay)
 
