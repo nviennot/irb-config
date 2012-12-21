@@ -41,8 +41,7 @@ module IRB
     end
 
     def self.run(args)
-      IRB::Env::Reloader.need_reload
-      IRB::Env.with_env('test') do
+      ::RailsEnvSwitcher.with_env('test', :reload => true) do
         self.reset
         ::RSpec::Core::CommandLine.new(args).run(STDERR, STDOUT)
       end

@@ -43,8 +43,7 @@ module IRB
     end
 
     def self.run(args)
-      IRB::Env::Reloader.need_reload
-      IRB::Env.with_env('test') do
+      ::RailsEnvSwitcher.with_env('test', :reload => true) do
         self.reset(args)
         @runtime.run!
         @runtime.write_stepdefs_json

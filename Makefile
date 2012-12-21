@@ -1,5 +1,5 @@
 GEMS = pry pry-doc pry-debugger pry-stack_explorer awesome_print gnuplot coderay
-GEMS_NODEPS = commands
+GEMS_NODEPS = commands rails-env-switcher
 TARGETS = $(HOME)/.pryrc $(HOME)/.irbrc
 RVM_GLOBAL = ~/.rvm/gemsets/global.gems
 SHELL = /bin/bash

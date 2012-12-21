@@ -1,7 +1,7 @@
 load '~/.irb/irbrc'
 require '~/.irb/irb/awesome_print_loader'
 require '~/.irb/irb/bypass_reloader'
-require '~/.irb/irb/env'
+require '~/.irb/irb/rails_env_switcher'
 require '~/.irb/irb/rspec'
 require '~/.irb/irb/cucumber'
 require '~/.irb/irb/plot'
