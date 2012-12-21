@@ -28,10 +28,10 @@ What is it ?
 It packages:
 - [Pry](https://github.com/pry/pry)
 - [Pry Doc](https://github.com/pry/pry-doc)
-- [Pry Rails](https://github.com/rweng/pry-rails)
 - [Pry Debugger](https://github.com/nixme/pry-debugger)
 - [Pry Stack Explorer](https://github.com/pry/pry-stack_explorer)
 - [Awesome Print](https://github.com/michaeldv/awesome_print)
+- [Commands](https://github.com/rails/commands)
 - Pry commands for [Gnuplot](https://github.com/rdp/ruby_gnuplot)
 - Pry commands for [Rspec](https://github.com/rspec/rspec)/[Cucumber](https://github.com/cucumber/cucumber)
   to run tests directly in the rails console
@@ -59,6 +59,7 @@ How to use
 * Use the `cucumber` command pretty much like the usual one.
 * Use the `env test` command to switch to the test environment.
 * Use the `plot` command to plot an array of 2D points (accepts a Hash too).
+* Use the `rake`, `test`, `generate`, `destroy`, `update` commands as usual.
 * Type `help` to see the Pry help.
 
 Notes
