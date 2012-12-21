@@ -17,4 +17,4 @@ module IRB
   end
 end
 
-IRB::RailsCommands.setup if defined?(Rails)
+IRB::RailsCommands.setup if defined?(Rails::ConsoleMethods)

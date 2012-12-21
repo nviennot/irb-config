@@ -34,16 +34,10 @@ It packages:
 - [Commands](https://github.com/rails/commands)
 - [Rails Env Switcher](https://github.com/nviennot/rails-env-switcher)
 - [RSpec Console](https://github.com/nviennot/rspec-console)
+- [Cucumber Console](https://github.com/nviennot/cucumber-console)
 - Pry commands for [Gnuplot](https://github.com/rdp/ruby_gnuplot)
   to run tests directly in the rails console
 - [Mongoid](https://github.com/mongoid/mongoid) pretty printing with [Coderay](https://github.com/rubychan/coderay)
-
-It supports Rails envionment switches for:
-- Active Record
-- Mongoid
-- CopycopterClient
-- Rspec
-- Cucumber
 
 This way you can switch back and forth from the development environment and the
 test environment, which is what the rspec/cucumber commands do.
