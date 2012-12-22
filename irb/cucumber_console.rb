@@ -4,6 +4,6 @@ module IRB
       return unless IRB.try_require 'cucumber-console'
       ::CucumberConsole::Pry.setup
     end
-    setup if defined?(::Cucumber)
+    setup
   end
 end

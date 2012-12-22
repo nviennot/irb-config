@@ -4,6 +4,6 @@ module IRB
       return unless IRB.try_require 'rspec-console'
       ::RSpecConsole::Pry.setup
     end
-    setup if defined? ::RSpec
+    setup
   end
 end
