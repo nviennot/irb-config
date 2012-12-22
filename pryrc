@@ -1,4 +1,6 @@
-load '~/.irb/irbrc'
+require 'rubygems'
+require '~/.irb/irb/gem_loader'
+require '~/.irb/irb/pry_loader'
 require '~/.irb/irb/awesome_print_loader'
 require '~/.irb/irb/bypass_reloader'
 require '~/.irb/irb/rails_env_switcher'

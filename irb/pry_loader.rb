@@ -8,9 +8,6 @@ module IRB
       ::Pry.prompt = [proc { |obj, nest_level| "#{self.pwd} (#{obj}) > " },
                       proc { |obj, nest_level| "#{self.pwd} (#{obj}) * " }]
       @@home = Dir.home
-
-      TopLevel.new.pry
-      exit
     end
 
     def self.load_pry_plugins
