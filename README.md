@@ -35,9 +35,9 @@ It packages:
 - [Rails Env Switcher](https://github.com/nviennot/rails-env-switcher)
 - [RSpec Console](https://github.com/nviennot/rspec-console)
 - [Cucumber Console](https://github.com/nviennot/cucumber-console)
+- [Mongoid Colors](https://github.com/nviennot/mongoid-colors)
 - Pry commands for [Gnuplot](https://github.com/rdp/ruby_gnuplot)
   to run tests directly in the rails console
-- [Mongoid](https://github.com/mongoid/mongoid) pretty printing with [Coderay](https://github.com/rubychan/coderay)
 
 This way you can switch back and forth from the development environment and the
 test environment, which is what the rspec/cucumber commands do.
@@ -64,10 +64,6 @@ Notes
 * The RSpec/Cucumber context run with your test environment, including your test
   database settings.  Furthermore, whenever you run the rspec command, all your
   classes are reloaded with `reload!`.
-* The pry debugger can misbehave: The break format `file:line` does not work
-  here for some reason.  Posted a [pull request](https://github.com/nixme/pry-debugger/pull/18).
-  Also the rails console won't close once a break point has been used, to be
-  fixed.
 
 Vim Integration
 ----------------
