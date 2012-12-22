@@ -23,7 +23,7 @@ all:
 
 install: $(TARGETS)
 	@echo -e "gems: ${bold}${GEMS} ${GEMS_NODEPS}${normal}\n"
-	@for RUBY in ${RUBIES}; do echo Installing gems in ${bold}$$RUBY@global${normal}...; rvm $$RUBY@global do gem install ${GEMS} --no-ri --no-rdoc; rvm $$RUBY@global do gem install ${GEMS_NODEPS} --ignore-dependencies --no-ri --no-rdoc; echo; done
+	@for RUBY in ${RUBIES}; do echo Installing gems in ${bold}$$RUBY@global${normal}...; rvm $$RUBY@global do gem install ${GEMS} --no-ri --no-rdoc; rvm $$RUBY@global do gem install ${GEMS_NODEPS} --ignore-dependencies --no-ri --no-rdoc; rvm $$RUBY@global do gem cleanup; echo; done
 	@echo "${bold}Setting up rvm to install these gems by default when installing a new ruby...${normal}"
 	@echo $(GEMS) | sed 's/ /\n/g' | cat $(RVM_GLOBAL) - | sort -u | grep . > $(RVM_GLOBAL).new && mv $(RVM_GLOBAL){.new,}
 	@echo "${bold}Enjoy !${normal}"
