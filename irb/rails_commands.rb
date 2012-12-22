@@ -14,7 +14,6 @@ module IRB
         end
       end.tap { |cmd| ::Pry::Commands.import cmd }
     end
+    setup if defined? ::Rails::ConsoleMethods
   end
 end
-
-IRB::RailsCommands.setup if defined?(Rails::ConsoleMethods)

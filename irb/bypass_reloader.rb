@@ -15,7 +15,6 @@ module IRB
         end
       end
     end
+    setup if defined?(::Rails)
   end
 end
-
-IRB::BypassReloader.setup if defined?(Rails)

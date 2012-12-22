@@ -1,6 +1,5 @@
 module IRB
   module RailsLogger
-
     # Purple messages for Rails logger
     def self.setup
       require 'logger'
@@ -9,8 +8,6 @@ module IRB
         "\033[35m#{msg}\033[0m\n"
       end
     end
-
+    setup if defined? ::Rails
   end
 end
-
-IRB::RailsLogger.setup if defined?(Rails)

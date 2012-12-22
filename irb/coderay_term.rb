@@ -1,6 +1,5 @@
 module IRB
   module CodeRayTerm
-
     def self.setup
       return unless IRB.try_require 'coderay'
 
@@ -10,8 +9,7 @@ module IRB
       colors[:string][:modifier] = colors[:string][:delimiter] = '1;36'
       colors[:symbol] = '1;33'
     end
-
+    setup
   end
 end
 
-IRB::CodeRayTerm.setup

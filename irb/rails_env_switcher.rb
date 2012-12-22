@@ -4,6 +4,6 @@ module IRB
       return unless IRB.try_require 'rails-env-switcher'
       ::RailsEnvSwitcher::Pry.setup
     end
-    setup
+    setup if defined? ::Rails
   end
 end
