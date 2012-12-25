@@ -4,6 +4,7 @@ module IRB
       return unless IRB.try_require 'pry'
 
       load_pry_plugins
+      trap_winchange
 
       ::Pry.prompt = [proc { |obj, nest_level| "#{self.pwd} (#{obj}) > " },
                       proc { |obj, nest_level| "#{self.pwd} (#{obj}) * " }]
@@ -12,8 +13,17 @@ module IRB
 
     def self.load_pry_plugins
       IRB.try_require 'pry-doc'
-      #IRB.try_require 'pry-debugger'
-      #IRB.try_require 'pry-stack_explorer'
+      IRB.try_require 'pry-debugger'
+      IRB.try_require 'pry-stack_explorer'
+    end
+
+    def self.trap_winchange
+      # thanks @rking
+      trap :WINCH do
+        size = `stty size`.split(/\s+/).map(&:to_i)
+        Readline.set_screen_size(*size)
+        Readline.refresh_line
+      end
     end
 
     def self.pwd
