@@ -8,7 +8,8 @@ module IRB
           create_command cmd.to_s, "Works pretty much like the regular #{cmd} command" do
             group "Rails Commands"
             define_method(:process) do |*args|
-              Commands.new.__send__(cmd, *args)
+              # Yes, the join is sad.
+              ::Rails::Commands::Commander.new.__send__(cmd, args.join(' '))
             end
           end
         end
