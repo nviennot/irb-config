@@ -86,3 +86,8 @@ Assuming you have a tmux session with vim and the rails console:
 * `,r` saves the file and run the rspec test corresponding to the cursor line.
 * `,e` saves the file and run the cucumber test corresponding to the cursor line.
 * `,b` puts a break point on the current line
+
+License
+--------
+
+irb config is released under the MIT license.
