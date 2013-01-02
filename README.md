@@ -8,8 +8,7 @@ To install, run
     make install
 
 `make install` installs all the required gems for all your installed rubies.
-Furthermore, these gems will be automatically installed when you install a new
-ruby.
+When installing a new ruby, please `make update` in the ~/.irb directory.
 
 Updates
 --------
