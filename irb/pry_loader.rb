@@ -21,7 +21,7 @@ module IRB
       # thanks @rking
       trap :WINCH do
         size = `stty size`.split(/\s+/).map(&:to_i)
-        Readline.set_screen_size(*size)
+        Readline.set_screen_size(*size) rescue nil
         Readline.refresh_line
       end
     end
