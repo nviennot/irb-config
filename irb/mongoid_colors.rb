@@ -8,6 +8,7 @@ module IRB
         IRB.try_require 'mongoid-colors'
         Mongoid.logger = Rails.logger if defined?(::Rails)
       end
+    rescue
     end
     setup
   end

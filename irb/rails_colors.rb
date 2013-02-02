@@ -7,6 +7,7 @@ module IRB
       Rails.logger.formatter = proc do |severity, datetime, progname, msg|
         "\033[35m#{msg}\033[0m\n"
       end
+    rescue
     end
     setup if defined? ::Rails
   end
