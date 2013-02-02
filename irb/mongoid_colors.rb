@@ -5,8 +5,8 @@ module IRB
       require '~/.irb/irb/coderay_term'
 
       if defined?(::Mongoid)
+        Moped.logger = Mongoid.logger = Rails.logger if defined?(::Rails)
         IRB.try_require 'mongoid-colors'
-        Mongoid.logger = Rails.logger if defined?(::Rails)
       end
     rescue
     end
