@@ -3,8 +3,8 @@ module IRB
     def self.setup
       if defined?(Bundler)
         # We make everything in the global gemset available, bypassing Bundler
-        global_gemset = ENV['GEM_PATH'].split(':').grep(/ruby.*@global/).first
-        Dir["#{global_gemset}/gems/*"].each { |p| $LOAD_PATH << "#{p}/lib" } if global_gemset
+        global_gemset = ( ENV["GEM_PATH"] || `rvm $(rvm current) do gem env path`.chop ).split(':').grep(/ruby.*@global/).first
+        Dir["#{global_gemset}/gems/*"].each { |path| $LOAD_PATH << "#{path}/lib" } if global_gemset
       end
     end
     setup
