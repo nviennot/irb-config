@@ -1,20 +1,23 @@
 module IRB
   module BypassReloader
-    def self.setup
-      ActionDispatch::Reloader.class_eval do
+    def self.bypass_middleware(klass)
+      klass.class_eval do
         def call(env)
           @app.call(env)
         end
       end
+    end
 
+    def self.setup
+      if defined?(ActionDispatch::Reloader)
+        bypass_middleware ActionDispatch::Reloader
+      elsif defined?(ActionDispatch::Callbacks)
+        bypass_middleware ActionDispatch::Callbacks
+      end
       if defined?(RailsDevTweaks::GranularAutoload::Middleware)
-        RailsDevTweaks::GranularAutoload::Middleware.class_eval do
-          def call(env)
-            @app.call(env)
-          end
-        end
+        bypass_middleware RailsDevTweaks::GranularAutoload::Middleware
       end
     end
-    setup if defined?(::Rails)
+    setup
   end
 end
