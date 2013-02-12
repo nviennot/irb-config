@@ -3,7 +3,8 @@ GEMS_NODEPS = commands rails-env-switcher rspec-console cucumber-console mongoid
 TARGETS = $(HOME)/.pryrc $(HOME)/.irbrc
 SHELL = /bin/bash
 CWD = $(shell pwd)
-RUBIES=$(shell ls ~/.rvm/rubies | grep -v '^default$$')
+RVM=$(shell ls -d {~/.,/usr/local/}rvm 2>/dev/null | head -1)
+RUBIES=$(shell ls ${RVM}/rubies | grep -v '^default$$')
 
 define check_file
 	@if [[ -e $1 && "$(OVERWRITE)" != "1" ]]; then \
