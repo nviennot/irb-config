@@ -11,6 +11,11 @@ module IRB
       @@home = Dir.home
     end
 
+    def self.linux?
+      require 'rbconfig'
+      /linux/i === RbConfig::CONFIG["host_os"]
+    end
+
     def self.load_pry_plugins
       IRB.try_require 'pry-doc'
       IRB.try_require 'pry-debugger'
@@ -18,6 +23,8 @@ module IRB
     end
 
     def self.trap_winchange
+      return unless linux? # mac crashes too often
+
       # thanks @rking
       trap :WINCH do
         size = `stty size`.split(/\s+/).map(&:to_i)
