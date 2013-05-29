@@ -1,6 +1,7 @@
 require 'rubygems'
 require '~/.irb/irb/gem_loader'
 require '~/.irb/irb/pry_loader'
+require '~/.irb/irb/custom' if File.exists?("#{Dir.home}/.irb/irb/custom.rb")
 require '~/.irb/irb/awesome_print_loader'
 require '~/.irb/irb/bypass_reloader'
 require '~/.irb/irb/rails_env_switcher'
