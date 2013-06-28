@@ -9,6 +9,10 @@ module IRB
     end
 
     def self.setup
+      # We are disabling the builtin reloader as we rely on manual reload! in
+      # the console.
+      return unless defined?(reload!)
+
       if defined?(ActionDispatch::Reloader)
         bypass_middleware ActionDispatch::Reloader
       elsif defined?(ActionDispatch::Callbacks)
