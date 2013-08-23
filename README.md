@@ -1,6 +1,8 @@
 Installation
 ------------
 
+Prerequisites: rvm or rbenv.
+
 To install, run
 
     git clone git://github.com/nviennot/irb-config.git ~/.irb
