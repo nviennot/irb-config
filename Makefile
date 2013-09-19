@@ -1,7 +1,7 @@
 GEMS = pry pry-doc pry-debugger pry-stack_explorer awesome_print gnuplot coderay colorize
 GEMS_NODEPS = commands rails-env-switcher rspec-console cucumber-console mongoid-colors
 TARGETS = $(HOME)/.pryrc $(HOME)/.irbrc
-SHELL = /bin/bash
+SHELL = /usr/bin/env bash
 CWD = $(shell pwd)
 RVM=$(shell ls -d {~/.,/usr/local/}rvm 2>/dev/null | head -1)
 RBENV=$(shell ls -d {~/.,/usr/local/}rbenv 2>/dev/null | head -1)
