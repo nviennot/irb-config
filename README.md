@@ -30,7 +30,6 @@ It packages:
 - [Pry](https://github.com/pry/pry)
 - [Pry Doc](https://github.com/pry/pry-doc)
 - [Pry Debugger](https://github.com/nixme/pry-debugger)
-- [Pry Stack Explorer](https://github.com/pry/pry-stack_explorer)
 - [Awesome Print](https://github.com/michaeldv/awesome_print)
 - [Commands](https://github.com/rails/commands)
 - [Rails Env Switcher](https://github.com/nviennot/rails-env-switcher)
