@@ -6,7 +6,7 @@ module IRB
       return path + "/lib/ruby/gems/irb-config" if path.to_s.size > 0
 
       # On RVM, We make everything in the global gemset available, bypassing Bundler
-      (ENV["GEM_PATH"] || `rvm $(rvm current) do gem env path`.chop).split(':').grep(/ruby.*@global/).first rescue nil
+      (ENV["_ORIGINAL_GEM_PATH"] || ENV["GEM_PATH"] || `gem env path`.chop).split(':').grep(/ruby.*@global/).first rescue nil
     end
 
     def self.setup
