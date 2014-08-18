@@ -6,8 +6,8 @@ module IRB
       load_pry_plugins
       trap_winchange
 
-      ::Pry.prompt = [proc { |obj, nest_level| "#{self.pwd} (#{obj}) > " },
-                      proc { |obj, nest_level| "#{self.pwd} (#{obj}) * " }]
+      ::Pry.prompt = [proc { |obj, nest_level, pry| "#{self.pwd} (#{obj}) > " },
+                      proc { |obj, nest_level, pry| "#{self.pwd} (#{obj}) * " }]
       @@home = Dir.home
     end
 
