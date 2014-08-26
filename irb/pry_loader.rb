@@ -6,9 +6,18 @@ module IRB
       load_pry_plugins
       trap_winchange
 
-      ::Pry.prompt = [proc { |obj, nest_level, pry| "#{self.pwd} (#{obj}) > " },
-                      proc { |obj, nest_level, pry| "#{self.pwd} (#{obj}) * " }]
+      ::Pry.prompt = [proc { |obj, nest_level, pry| get_prompt(obj, nest_level, pry, ">") },
+                      proc { |obj, nest_level, pry| get_prompt(obj, nest_level, pry, "|") }]
       @@home = Dir.home
+    end
+
+    def self.get_prompt(obj, nest_level, pry, suffix)
+      obj_str = obj.to_s
+      max_length = 20
+      if obj_str.size > max_length+3
+        obj_str = "#{obj_str[0, max_length/2]}...#{obj_str[-max_length/2..-1]}"
+      end
+      "#{self.pwd} (#{obj_str})#{":#{nest_level}" unless nest_level.zero?} #{suffix} "
     end
 
     def self.linux?
