@@ -1,5 +1,5 @@
-GEMS = pry pry-doc pry-debugger awesome_print gnuplot coderay colorize
-GEMS_NODEPS = commands rails-env-switcher rspec-console cucumber-console mongoid-colors
+GEMS = pry pry-doc awesome_print gnuplot
+GEMS_NODEPS = commands rspec-console cucumber-console
 TARGETS = $(HOME)/.pryrc $(HOME)/.irbrc
 SHELL = /usr/bin/env bash
 CWD = $(shell pwd)
