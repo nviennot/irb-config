@@ -49,6 +49,7 @@ module IRB
     def to_s
       defined?(Rails) ? Rails.env : "main"
     end
+    alias inspect to_s
     Object.__send__(:include, Rails::ConsoleMethods) if defined?(Rails::ConsoleMethods)
   end
 end
