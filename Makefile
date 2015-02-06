@@ -1,4 +1,4 @@
-GEMS = pry pry-doc awesome_print gnuplot
+GEMS = pry pry-doc awesome_print
 GEMS_NODEPS = commands rspec-console cucumber-console
 TARGETS = $(HOME)/.pryrc $(HOME)/.irbrc
 SHELL = /usr/bin/env bash
@@ -25,9 +25,6 @@ endef
 
 bold=`tput bold`
 normal=`tput sgr0`
-
-all:
-	@echo type make install
 
 install: $(TARGETS)
 	@echo -e "gems: ${bold}${GEMS} ${GEMS_NODEPS}${normal}\n"

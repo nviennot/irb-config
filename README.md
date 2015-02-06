@@ -29,15 +29,10 @@ What is it ?
 It packages:
 - [Pry](https://github.com/pry/pry)
 - [Pry Doc](https://github.com/pry/pry-doc)
-- [Pry Debugger](https://github.com/nixme/pry-debugger)
 - [Awesome Print](https://github.com/michaeldv/awesome_print)
 - [Commands](https://github.com/rails/commands)
-- [Rails Env Switcher](https://github.com/nviennot/rails-env-switcher)
 - [RSpec Console](https://github.com/nviennot/rspec-console)
 - [Cucumber Console](https://github.com/nviennot/cucumber-console)
-- [Mongoid Colors](https://github.com/nviennot/mongoid-colors)
-- Pry commands for [Gnuplot](https://github.com/rdp/ruby_gnuplot)
-  to run tests directly in the rails console
 
 This way you can switch back and forth from the development environment and the
 test environment, which is what the rspec/cucumber commands do.
@@ -45,15 +40,9 @@ test environment, which is what the rspec/cucumber commands do.
 How to use
 ----------
 
-* All the goodies are automatically loaded into your rails console, `rails c`
-  and you go straight to heaven.
-* If Mongoid emits too much noise (For example you are running all your tests),
-  you can make it quiet with `Mongoid.logger.level = Logger::WARN`.  Note that
-  `Rails.logger == Mongoid.logger`.
+* All the goodies are automatically loaded into your rails console.
 * Use the `rspec` command pretty much like the usual one.
 * Use the `cucumber` command pretty much like the usual one.
-* Use the `env test` command to switch to the test environment.
-* Use the `plot` command to plot an array of 2D points (accepts a Hash too).
 * Use the `rake`, `test`, `generate`, `destroy`, `update` commands as usual.
 * Type `help` to see the Pry help.
 
