@@ -6,6 +6,10 @@ CWD = $(shell pwd)
 RVM=$(shell ls -d {~/.,/usr/local/}rvm 2>/dev/null | head -1)
 RBENV=$(shell rbenv root)
 
+ifneq ($(HOME)/.irb, $(shell pwd))
+  $(error Please rename this directory to ~/.irb)
+endif
+
 ifneq ($(RVM),)
   RUBIES=$(shell ls ${RVM}/rubies | grep -v '^default$$')
 else ifneq ($(RBENV),)
